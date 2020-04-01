@@ -201,3 +201,147 @@ public static void main(String[] args)//主函数部分
     	 }
 
     	}
+        FileWriter fw = null;
+        try {
+
+            File f=new File("Exersies.txt");//题目写入
+            fw = new FileWriter(f, true);
+        } catch (IOException e) 
+         {
+        	e.printStackTrace();
+         }
+        if(expArr[0]!=null)
+        {
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println(i+1+"."+expArr[0]);
+        pw.flush();
+        try {
+            fw.flush();
+            pw.close();
+            fw.close();
+         } catch (IOException e) 
+         {
+        	e.printStackTrace();
+         }
+        }
+        FileWriter fn = null;
+        try {
+
+                File f=new File("Answer.txt");//答案写入
+                fn = new FileWriter(f, true);
+            } catch (IOException e)
+            {
+            	e.printStackTrace();
+            }
+        if(expArr[0]!=null)
+        {
+            PrintWriter pn = new PrintWriter(fn);
+            pn.println(i+1+"."+results[i]);
+            pn.flush();
+            try {
+                fn.flush();
+                pn.close();
+                fn.close();
+            } catch (IOException e)
+            {
+            	e.printStackTrace();
+            }
+        }
+    	}
+         FileWriter fo = null;
+         try {
+
+             File f=new File("Your_answers.txt");//答案输入
+             fo = new FileWriter(f, true);
+         } catch (IOException e) 
+         {
+        	 e.printStackTrace();
+         }
+         try {
+             fo.flush();
+             fo.close();
+         } catch (IOException e)
+         {
+         	e.printStackTrace();
+         }
+         System.out.println("请在Your_answers.txt中写入答案");
+         System.out.println("请输入ok提交答案");
+         Scanner sc1=new Scanner(System.in);
+         String submit=sc1.nextLine();
+    	 if(submit.equals("ok"))
+    	 {
+         String array[]=new String[num];
+
+         try
+         {   
+        	int k=0;
+    		FileReader fr = new FileReader("Your_answers.txt");
+    		BufferedReader br = new BufferedReader(fr);
+    		String s ;
+    		while((s = br.readLine())!=null)//读取输入的答案
+    		{
+    		array[k]=s;	k++;
+    				}
+    		br.close();
+    		fr.close();		
+    		}catch(IOException e)
+                {
+    				System.out.println("指定文件不存在");
+    			}
+        for(int j=0;j<num;j++)
+        {
+         	if(array[j].equals(results[j]))//验证答案，统计正确和错误的个数
+         	{
+
+         		rightcount[j]=j+1;
+         		right1++;
+         		grade1=right1*10;
+         	}
+         	else 
+         	{
+
+         		wrongcount[j]=j+1;
+         		wrong1++;
+         	}
+         	grade1=right1*10;
+         }
+        FileWriter fg = null;
+        try  //反馈正确与错误题目的信息
+           {    
+               File f=new File("Grade.txt");
+                fg = new FileWriter(f, true);
+           } catch (IOException e) 
+            {
+            	e.printStackTrace();
+            }
+            PrintWriter pg = new PrintWriter(fg);
+            pg.println(" ");
+            pg.print("Correct:"+right1+"(正确题号");
+            for (int j = 0; j <= num; j++) {
+    			if (rightcount[j] != 0) {
+    				 pg.print(rightcount[j] + ",");
+    			}
+    		}
+            pg.println(")");
+            pg.print("Wrong:"+wrong1+"(错误题号");
+            for (int j = 0; j <= num; j++) {
+    			if (wrongcount[j] != 0) {
+    				 pg.print(wrongcount[j] + ",");
+    			}
+    		}
+            pg.println(")"); 
+            pg.print("GRADE:"+grade1);
+            pg.flush();
+            try {
+                fg.flush();
+                pg.close();
+                fg.close();
+            } catch (IOException e) 
+            {
+            	e.printStackTrace();
+            }
+            }System.out.println("成绩已经生成请在文件中查看。");
+             System.out.println("感谢你的使用！");
+    }
+    }
+
