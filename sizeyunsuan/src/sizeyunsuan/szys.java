@@ -53,7 +53,7 @@ public class szys {
 		 }
 		 return a+"/"+b;
 	 }
-}
+	
 public static void main(String[] args)//主函数部分
 {
 	 Scanner sc= new Scanner(System.in);
@@ -134,6 +134,67 @@ public static void main(String[] args)//主函数部分
     		int fenzi=a*d;
     		int fenmu=b*c;
     		expArr[0]=biaodashi(a,b)+'÷'+biaodashi(c,d)+'=';
+    		System.out.println(expArr[0]);
+    		results[i]=reductionofFraction(fenzi, fenmu);*/
+
+    	 }
+
+    	}
+    	else //分母至少一个为0时生成只含有整式的运算式，同时计算结果
+    	{
+    		b=1; d=1;
+    	    if(yunsuanfu==0)
+    	 {
+    		int fenzi=a*d+b*c;
+    		int fenmu=b*d;
+    		expArr[0]=a+"+"+c+"=";
+    		System.out.println(expArr[0]);
+    		results[i]=yuefen(fenzi, fenmu);
+
+    	 }
+    	if(yunsuanfu==1&&a*d-b*c>=0) 
+    	 {
+    		int fenzi=a*d-b*c;
+    		int fenmu=b*d;
+    		expArr[0]=a+"-"+c+"=";
+    		System.out.println(expArr[0]);
+    		results[i]=yuefen(fenzi, fenmu);
+
+    	 }
+    	if(yunsuanfu==1&&a*d-b*c<0)
+    	 {
+    		int fenzi=b*c-a*d;
+    		int fenmu=b*d;
+    		expArr[0]=c+"-"+a+"=";
+    		System.out.println(expArr[0]);
+    		results[i]=yuefen(fenzi, fenmu);
+
+    	 }
+    	if(yunsuanfu==2)
+    	 {
+    		int fenzi=a*c;
+    		int fenmu=b*d;
+    		expArr[0]=c+"×"+a+"=";
+    		System.out.println(expArr[0]);
+    		results[i]=yuefen(fenzi, fenmu);
+
+    	 }
+    	if(yunsuanfu==3&&c!=0)
+    	 {
+    		int fenzi=a*d;
+    		int fenmu=b*c;
+    		expArr[0]=a+"÷"+c+"=";
+    		System.out.println(expArr[0]);
+    		results[i]=yuefen(fenzi, fenmu);
+
+    	 }
+    	if(yunsuanfu==3&&c==0)
+    	 {
+    		break;
+    		/*c=1;
+    		int fenzi=a*d;
+    		int fenmu=b*c;
+    		expArr[0]=a+"÷"+c+"=";
     		System.out.println(expArr[0]);
     		results[i]=reductionofFraction(fenzi, fenmu);*/
 
